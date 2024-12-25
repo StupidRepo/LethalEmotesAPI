@@ -1496,6 +1496,11 @@ public class BoneMapper : MonoBehaviour
     Renderer helmetRenderer = null;
     public void TurnOnThirdPerson()
     {
+        if (playerController.gameplayCamera is null) {
+            // probs using LCVR or some other crazy shit is going on lmao
+            DebugClass.Log("couldn't go 3rd person. gameplayCamera was null. are you using the LCVR mod perchance?");
+            return;
+        }
         if (helmetRenderer is null)
         {
             helmetRenderer = playerController.localVisor.transform.GetChild(0).GetComponent<Renderer>();
